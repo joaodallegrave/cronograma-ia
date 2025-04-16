@@ -1,10 +1,24 @@
 import streamlit as st
 import pandas as pd
 
-# Load data
-df = pd.read_excel("Checklist_Estudos_12_Semanas.xlsx")
+# ======= CONFIGURAÇÃO =======
+SENHA_CORRETA = "joao2025"
+ARQUIVO_EXCEL = "Checklist_Estudos_12_Semanas.xlsx"
 
+# ======= INTERFACE DE LOGIN =======
 st.set_page_config(page_title="Cronograma de Estudos IA", layout="wide")
+st.title("🔐 Acesso ao Cronograma de Estudos")
+
+senha_digitada = st.sidebar.text_input("Digite a senha para acessar o cronograma:", type="password")
+
+if senha_digitada != SENHA_CORRETA:
+    st.warning("Acesso restrito. Digite a senha correta para visualizar o conteúdo.")
+    st.stop()
+
+# ======= APP PRINCIPAL =======
+st.success("✅ Acesso autorizado!")
+df = pd.read_excel(ARQUIVO_EXCEL)
+
 st.title("📚 Cronograma de Estudos - IA Generativa")
 
 # Sidebar: filtro por semana
