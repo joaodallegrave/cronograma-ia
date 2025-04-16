@@ -21,8 +21,8 @@ df = pd.read_excel(ARQUIVO_EXCEL)
 
 st.title("📚 Cronograma de Estudos - IA Generativa")
 
-# Sidebar: filtro por semana
-semanas = sorted(df["Semana"].unique())
+# Ordenar as semanas numericamente
+semanas = sorted(df["Semana"].unique(), key=lambda x: int(x.split()[-1]))
 semana_selecionada = st.sidebar.selectbox("Escolha a semana", semanas)
 
 # Filtrar dados
